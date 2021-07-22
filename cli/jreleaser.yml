@@ -1,0 +1,66 @@
+#
+#  Copyright 2020-Present Okta, Inc.
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+
+project:
+  name: okta
+  description: Okta CLI [Beta] tools to help bootstrap new Okta organizations, and applications.
+  longDescription: Okta CLI [Beta] tools to help bootstrap new Okta organizations, and applications.
+  website: https://github.com/okta/okta-cli
+  authors:
+    - Okta
+  license: Apache-2.0
+  extraProperties:
+    inceptionYear: 2019
+
+release:
+  github:
+    tagName: 'okta-cli-tools-{{projectVersion}}'
+    changelog:
+      formatted: ALWAYS
+      change: '- {{commitShortHash}} {{commitTitle}}'
+      labelers:
+        - label: 'issue'
+          title: '^Fix'
+        - label: 'dependencies'
+          title: 'Bump'
+      categories:
+        - title: '🚀 Features'
+          labels:
+            - 'feature'
+        - title: '✅ Issues'
+          labels:
+            - 'issue'
+        - title: '⚙️  Dependencies'
+          labels:
+            - 'dependencies'
+      hide:
+        contributors:
+          - 'dependabot[bot]'
+          - 'GitHub'
+
+distributions:
+  okta:
+    type: NATIVE_IMAGE
+    artifacts:
+      - path: 'target/distributions/{{distributionName}}-{{projectVersion}}-linux-x86_64.zip'
+        transform: 'artifacts/{{distributionName}}-{{projectEffectiveVersion}}-linux-x86_64.zip'
+        platform: linux-x86_64
+      - path: 'target/distributions/{{distributionName}}-{{projectVersion}}-windows-x86_64.zip'
+        transform: 'artifacts/{{distributionName}}-{{projectEffectiveVersion}}-windows-x86_64.zip'
+        platform: windows-x86_64
+      - path: 'target/distributions/{{distributionName}}-{{projectVersion}}-osx-x86_64.zip'
+        transform: 'artifacts/{{distributionName}}-{{projectEffectiveVersion}}-osx-x86_64.zip'
+        platform: osx-x86_64
